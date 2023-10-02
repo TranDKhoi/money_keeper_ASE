@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1065283263585",
+    "project_id": "money-keeper-9f82b",
+    "storage_bucket": "money-keeper-9f82b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065283263585:android:61cbf6df2f4b7ad16f1e20",
+        "android_client_info": {
+          "package_name": "com.example.money_keeper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065283263585-u4a38gd39ipo3r5qjnvgdpnl7feu5frs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPKpE6XgOS2RhocsHdTbgN0ch0k2Gamjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065283263585-u4a38gd39ipo3r5qjnvgdpnl7feu5frs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
