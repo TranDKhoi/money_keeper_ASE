@@ -37,6 +37,8 @@ dependencies:
   flutter_local_notifications: ^13.0.0
   textfield_tags: ^2.0.1
   currency_text_input_formatter: ^2.1.8
+  intl: ^0.18.1
+  logging: ^1.2.0
 
 dev_dependencies:
   flutter_test:

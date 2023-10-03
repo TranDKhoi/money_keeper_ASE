@@ -18,6 +18,7 @@ class Budget {
   Wallet? wallet;
   int? creatorId;
   User? creator;
+
   Budget({
     this.id,
     this.spentAmount,

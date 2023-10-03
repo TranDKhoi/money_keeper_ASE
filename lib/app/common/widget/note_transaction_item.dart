@@ -4,8 +4,7 @@ import 'package:money_keeper/app/core/utils/utils.dart';
 import '../../../data/models/transaction.dart';
 
 class NoteTransactionItem extends StatelessWidget {
-  const NoteTransactionItem(
-      {Key? key, required this.onTap, required this.transaction})
+  const NoteTransactionItem({Key? key, required this.onTap, required this.transaction})
       : super(key: key);
 
   final Transaction transaction;
@@ -38,9 +37,7 @@ class NoteTransactionItem extends StatelessWidget {
       trailing: Text(
         FormatHelper().moneyFormat(transaction.amount?.toDouble()),
         style: TextStyle(
-          color: transaction.category?.type == "Expense"
-              ? Colors.redAccent
-              : Colors.green,
+          color: transaction.category?.type == "Expense" ? Colors.redAccent : Colors.green,
           fontWeight: FontWeight.bold,
         ),
       ),

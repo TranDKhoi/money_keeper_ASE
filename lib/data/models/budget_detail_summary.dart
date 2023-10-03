@@ -9,6 +9,7 @@ class BudgetDetailSummary {
   double? recommendedDailyExpense;
   double? realDailyExpense;
   double? expectedExpense;
+
   BudgetDetailSummary({
     this.totalBudget,
     this.totalSpentAmount,

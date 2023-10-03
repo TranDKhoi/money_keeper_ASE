@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:money_keeper/app/core/values/strings.dart';
 import 'package:money_keeper/data/models/create_budget.dart';
 
-import '../../app/controllers/account/account_controller.dart';
+import '../../app/features/account/controller/account_controller.dart';
 
 class BudgetService extends GetConnect {
   final AccountController _ac = Get.find();
@@ -16,7 +16,7 @@ class BudgetService extends GetConnect {
   Future<Response> getBudgetsInMonth(
       {required int walletId, required int month, required int year}) async {
     return await get(
-      "$api_url/wallets/$walletId/budgets?month=$month&year=$year",
+      "$baseUrl/wallets/$walletId/budgets?month=$month&year=$year",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },
@@ -26,17 +26,16 @@ class BudgetService extends GetConnect {
   Future<Response> getBudgetSummaryInMonth(
       {required int walletId, required int month, required int year}) async {
     return await get(
-      "$api_url/wallets/$walletId/budgets/summary?month=$month&year=$year",
+      "$baseUrl/wallets/$walletId/budgets/summary?month=$month&year=$year",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },
     );
   }
 
-  Future<Response> createBudget(
-      {required int walletId, required CreateBudget createBudget}) async {
+  Future<Response> createBudget({required int walletId, required CreateBudget createBudget}) async {
     return await post(
-      "$api_url/wallets/$walletId/budgets",
+      "$baseUrl/wallets/$walletId/budgets",
       createBudget.toJson(),
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
@@ -45,12 +44,9 @@ class BudgetService extends GetConnect {
   }
 
   Future<Response> getBudgetDetailSummary(
-      {required int budgetId,
-      required int walletId,
-      required int month,
-      required int year}) async {
+      {required int budgetId, required int walletId, required int month, required int year}) async {
     return await get(
-      "$api_url/wallets/$walletId/budgets/$budgetId/summary?month=$month&year=$year",
+      "$baseUrl/wallets/$walletId/budgets/$budgetId/summary?month=$month&year=$year",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },
@@ -58,12 +54,9 @@ class BudgetService extends GetConnect {
   }
 
   Future<Response> getBudgetStatistic(
-      {required int budgetId,
-      required int walletId,
-      required int month,
-      required int year}) async {
+      {required int budgetId, required int walletId, required int month, required int year}) async {
     return await get(
-      "$api_url/wallets/$walletId/budgets/$budgetId/statistic?month=$month&year=$year",
+      "$baseUrl/wallets/$walletId/budgets/$budgetId/statistic?month=$month&year=$year",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },
@@ -71,12 +64,9 @@ class BudgetService extends GetConnect {
   }
 
   Future<Response> getBudgetTransaction(
-      {required int budgetId,
-      required int walletId,
-      required int month,
-      required int year}) async {
+      {required int budgetId, required int walletId, required int month, required int year}) async {
     return await get(
-      "$api_url/wallets/$walletId/budgets/$budgetId/transactions?month=$month&year=$year",
+      "$baseUrl/wallets/$walletId/budgets/$budgetId/transactions?month=$month&year=$year",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },
@@ -84,11 +74,9 @@ class BudgetService extends GetConnect {
   }
 
   Future<Response> editBudget(
-      {required int budgetId,
-      required int walletId,
-      required CreateBudget editBudget}) async {
+      {required int budgetId, required int walletId, required CreateBudget editBudget}) async {
     return await put(
-      "$api_url/wallets/$walletId/budgets/$budgetId",
+      "$baseUrl/wallets/$walletId/budgets/$budgetId",
       editBudget.toJson(),
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
@@ -101,7 +89,7 @@ class BudgetService extends GetConnect {
     required int walletId,
   }) async {
     return await delete(
-      "$api_url/wallets/$walletId/budgets/$budgetId",
+      "$baseUrl/wallets/$walletId/budgets/$budgetId",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },

@@ -1,6 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:money_keeper/data/models/transactions_by_day.dart';
-import 'package:money_keeper/data/models/transactions_by_time.dart';
 import 'package:money_keeper/data/models/wallet.dart';
 
 part 'event.g.dart';

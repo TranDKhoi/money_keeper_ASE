@@ -50,8 +50,7 @@ class PushService {
     // khi nhấn vô cái noti thì làm gì nè
   }
 
-  void _onDidReceiveBackgroundNotificationResponse(
-      NotificationResponse details) {
+  void _onDidReceiveBackgroundNotificationResponse(NotificationResponse details) {
     // khi nhấn vô cái noti mà app đang ở background
   }
 }

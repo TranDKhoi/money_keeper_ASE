@@ -13,7 +13,8 @@ class Category {
   int? walletId;
   Wallet? wallet;
 
-  Category({this.id, this.name, this.icon, this.type, this.walletId,this.wallet});
+  Category({this.id, this.name, this.icon, this.type, this.walletId, this.wallet});
+
   factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoryToJson(this);

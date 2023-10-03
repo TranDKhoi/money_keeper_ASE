@@ -12,9 +12,8 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       icon: json['icon'] as String?,
       type: json['type'] as String?,
       walletId: json['walletId'] as int?,
-      wallet: json['wallet'] == null
-          ? null
-          : Wallet.fromJson(json['wallet'] as Map<String, dynamic>),
+      wallet:
+          json['wallet'] == null ? null : Wallet.fromJson(json['wallet'] as Map<String, dynamic>),
     )..group = json['group'] as String?;
 
 Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{

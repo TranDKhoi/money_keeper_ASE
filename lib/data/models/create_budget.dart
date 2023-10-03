@@ -6,6 +6,7 @@ class CreateBudget {
   int? year;
   int? categoryId;
   int? walletId;
+
   CreateBudget({
     this.limitAmount,
     this.month,
@@ -36,6 +37,5 @@ class CreateBudget {
 
   String toJson() => json.encode(toMap());
 
-  factory CreateBudget.fromJson(String source) =>
-      CreateBudget.fromMap(json.decode(source));
+  factory CreateBudget.fromJson(String source) => CreateBudget.fromMap(json.decode(source));
 }

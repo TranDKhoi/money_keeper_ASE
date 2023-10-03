@@ -5,12 +5,11 @@ import 'package:money_keeper/app/core/utils/utils.dart';
 
 import '../../../data/models/transactions_by_day.dart';
 import '../../core/values/r.dart';
-import '../../modules/transaction/edit_transaction.dart';
+import '../../features/transaction/edit_transaction.dart';
 import 'note_transaction_item.dart';
 
 class CardTransactionItem extends StatelessWidget {
-  const CardTransactionItem({Key? key, required this.transactionsByDay})
-      : super(key: key);
+  const CardTransactionItem({Key? key, required this.transactionsByDay}) : super(key: key);
 
   final TransactionsByDay transactionsByDay;
 
@@ -31,8 +30,7 @@ class CardTransactionItem extends StatelessWidget {
               title: transactionsByDay.date?.day == DateTime.now().day
                   ? Text(R.Today.tr)
                   : Text(DateFormat('EEEE').format(transactionsByDay.date!).tr),
-              subtitle:
-                  Text(FormatHelper().dateFormat(transactionsByDay.date!)),
+              subtitle: Text(FormatHelper().dateFormat(transactionsByDay.date!)),
               trailing: Text(
                 FormatHelper().moneyFormat(transactionsByDay.revenue?.toDouble()),
                 style: const TextStyle(

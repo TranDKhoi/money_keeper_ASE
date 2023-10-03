@@ -8,22 +8,16 @@ part of 'wallet_member.dart';
 
 WalletMember _$WalletMemberFromJson(Map<String, dynamic> json) => WalletMember(
       userId: json['userId'] as int?,
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null ? null : User.fromJson(json['user'] as Map<String, dynamic>),
       walletId: json['walletId'] as int?,
-      wallet: json['wallet'] == null
-          ? null
-          : Wallet.fromJson(json['wallet'] as Map<String, dynamic>),
+      wallet:
+          json['wallet'] == null ? null : Wallet.fromJson(json['wallet'] as Map<String, dynamic>),
       status: json['status'] as String?,
       role: json['role'] as String?,
-      joinAt: json['joinAt'] == null
-          ? null
-          : DateTime.parse(json['joinAt'] as String),
+      joinAt: json['joinAt'] == null ? null : DateTime.parse(json['joinAt'] as String),
     );
 
-Map<String, dynamic> _$WalletMemberToJson(WalletMember instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$WalletMemberToJson(WalletMember instance) => <String, dynamic>{
       'userId': instance.userId,
       'user': instance.user?.toJson(),
       'walletId': instance.walletId,

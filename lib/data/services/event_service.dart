@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:money_keeper/app/core/values/strings.dart';
 
-import '../../app/controllers/account/account_controller.dart';
+import '../../app/features/account/controller/account_controller.dart';
 import '../models/event.dart';
 
 class EventService extends GetConnect {
@@ -14,7 +14,7 @@ class EventService extends GetConnect {
 
   Future<Response> getAllEvent(int i) async {
     return await get(
-      "$api_url/events?walletId=$i",
+      "$baseUrl/events?walletId=$i",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },
@@ -23,7 +23,7 @@ class EventService extends GetConnect {
 
   Future<Response> createNewEvent(Event event) async {
     return await post(
-      "$api_url/events",
+      "$baseUrl/events",
       jsonEncode(event),
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
@@ -33,7 +33,7 @@ class EventService extends GetConnect {
 
   Future<Response> editEvent(Event nE) async {
     return await put(
-      "$api_url/events/${nE.id}",
+      "$baseUrl/events/${nE.id}",
       jsonEncode(nE),
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
@@ -43,7 +43,7 @@ class EventService extends GetConnect {
 
   Future<Response> deleteEvent(int id) async {
     return await delete(
-      "$api_url/events/$id",
+      "$baseUrl/events/$id",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },
@@ -52,7 +52,7 @@ class EventService extends GetConnect {
 
   Future<Response> toggleEvent(int i) async {
     return await get(
-      "$api_url/events/$i/toggle-finished",
+      "$baseUrl/events/$i/toggle-finished",
       headers: <String, String>{
         'Authorization': _ac.currentUser.value!.token!,
       },

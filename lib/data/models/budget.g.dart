@@ -17,13 +17,11 @@ Budget _$BudgetFromJson(Map<String, dynamic> json) => Budget(
           ? null
           : Category.fromJson(json['category'] as Map<String, dynamic>),
       walletId: json['walletId'] as int?,
-      wallet: json['wallet'] == null
-          ? null
-          : Wallet.fromJson(json['wallet'] as Map<String, dynamic>),
+      wallet:
+          json['wallet'] == null ? null : Wallet.fromJson(json['wallet'] as Map<String, dynamic>),
       creatorId: json['creatorId'] as int?,
-      creator: json['creator'] == null
-          ? null
-          : User.fromJson(json['creator'] as Map<String, dynamic>),
+      creator:
+          json['creator'] == null ? null : User.fromJson(json['creator'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$BudgetToJson(Budget instance) => <String, dynamic>{

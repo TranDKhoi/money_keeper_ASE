@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:money_keeper/app/controllers/account/account_controller.dart';
 import 'package:money_keeper/app/core/utils/push_service.dart';
 import 'package:money_keeper/app/core/utils/utils.dart';
+import 'package:money_keeper/app/features/account/controller/account_controller.dart';
 import 'package:money_keeper/data/services/auth_service.dart';
 
 import 'app/app.dart';

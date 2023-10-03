@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:get/get_connect/connect.dart';
 
-import '../../app/controllers/account/account_controller.dart';
 import '../../app/core/values/strings.dart';
+import '../../app/features/account/controller/account_controller.dart';
 import '../models/user.dart';
 
 class AuthService extends GetConnect {
@@ -17,52 +16,49 @@ class AuthService extends GetConnect {
 
   Future<Response> login({required User user}) async {
     return await post(
-      "$api_url/auth/login",
+      "$baseUrl/auth/login",
       jsonEncode(user),
     );
   }
 
   Future<Response> signUp({required User user}) async {
     return await post(
-      "$api_url/auth/register",
+      "$baseUrl/auth/register",
       jsonEncode(user),
     );
   }
 
-  Future<Response> verifyAccount(
-      {required String email, required String code}) async {
+  Future<Response> verifyAccount({required String email, required String code}) async {
     return await post(
-      "$api_url/auth/verify-account",
+      "$baseUrl/auth/verify-account",
       jsonEncode({"email": email, "code": code}),
     );
   }
 
   Future<Response> forgotPassword({required String email}) async {
     return await post(
-      "$api_url/auth/forgot-password",
+      "$baseUrl/auth/forgot-password",
       jsonEncode({"email": email}),
     );
   }
 
-  Future<Response> verifyResetPassword(
-      {required String email, required String code}) async {
+  Future<Response> verifyResetPassword({required String email, required String code}) async {
     return await post(
-      "$api_url/auth/verify-code-repassword",
+      "$baseUrl/auth/verify-code-repassword",
       jsonEncode({"email": email, "code": code}),
     );
   }
 
-  Future<Response> resetPassword(
-      {required String token, required String password}) async {
+  Future<Response> resetPassword({required String token, required String password}) async {
     return await post(
-      "$api_url/auth/reset-password",
+      "$baseUrl/auth/reset-password",
       jsonEncode({"token": token, "password": password}),
     );
   }
 
   Future<Response> updateAvatar(String avatar) {
     return put(
-      "$api_url/account/info",
+      "$baseUrl/account/info",
       {
         "avatar": avatar,
       },
@@ -73,7 +69,7 @@ class AuthService extends GetConnect {
   }
 
   Future<Response> getUserData() async {
-    return await get("$api_url/auth", headers: <String, String>{
+    return await get("$baseUrl/auth", headers: <String, String>{
       'Authorization': _ac.currentUser.value!.token!,
     });
   }

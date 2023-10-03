@@ -3,19 +3,17 @@ import 'package:get/get.dart';
 
 import '../../../data/models/transaction.dart';
 import '../../core/utils/utils.dart';
-import '../../modules/transaction/edit_transaction.dart';
+import '../../features/transaction/edit_transaction.dart';
 
 class HomeTransactionItem extends StatelessWidget {
-  const HomeTransactionItem({Key? key, required this.transaction})
-      : super(key: key);
+  const HomeTransactionItem({Key? key, required this.transaction}) : super(key: key);
 
   final Transaction transaction;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () =>
-          Get.to(() => EditTransactionScreen(selectedTrans: transaction)),
+      onTap: () => Get.to(() => EditTransactionScreen(selectedTrans: transaction)),
       contentPadding: const EdgeInsets.symmetric(vertical: 5),
       isThreeLine: true,
       dense: true,
@@ -38,9 +36,7 @@ class HomeTransactionItem extends StatelessWidget {
       trailing: Text(
         FormatHelper().moneyFormat(transaction.amount?.toDouble()),
         style: TextStyle(
-          color: transaction.category!.type == "Income"
-              ? Colors.green
-              : Colors.redAccent,
+          color: transaction.category!.type == "Income" ? Colors.green : Colors.redAccent,
           fontWeight: FontWeight.bold,
         ),
       ),

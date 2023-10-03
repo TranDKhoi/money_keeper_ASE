@@ -17,8 +17,7 @@ Wallet _$WalletFromJson(Map<String, dynamic> json) => Wallet(
       walletMembers: (json['walletMembers'] as List<dynamic>?)
           ?.map((e) => WalletMember.fromJson(e as Map<String, dynamic>))
           .toList(),
-      memberIds:
-          (json['memberIds'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      memberIds: (json['memberIds'] as List<dynamic>?)?.map((e) => e as int).toList(),
     );
 
 Map<String, dynamic> _$WalletToJson(Wallet instance) => <String, dynamic>{

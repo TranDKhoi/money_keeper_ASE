@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -44,7 +44,9 @@ extension ApiResponseHandler on Response {
         return element[0];
       }
     } catch (e) {
-      print("parse error error: $e");
+      if (kDebugMode) {
+        print("parse error error: $e");
+      }
     }
     return "Server error";
   }
@@ -57,8 +59,7 @@ class ImageHelper {
   final _imgPicker = ImagePicker();
 
   Future<String?> pickAvatar() async {
-    final XFile? selected =
-        await _imgPicker.pickImage(source: ImageSource.gallery);
+    final XFile? selected = await _imgPicker.pickImage(source: ImageSource.gallery);
 
     if (selected != null) {
       return await cropImage(selected.path);
@@ -67,17 +68,13 @@ class ImageHelper {
   }
 
   Future<List<String>?> pickMultiImage() async {
-    final List<XFile>? selected = await _imgPicker.pickMultiImage();
+    final List<XFile> selected = await _imgPicker.pickMultiImage();
 
-    if (selected != null) {
-      return selected.map((e) => e.path).toList();
-    }
-    return null;
+    return selected.map((e) => e.path).toList();
   }
 
   Future<String?> pickSingleImage() async {
-    final XFile? selected =
-        await _imgPicker.pickImage(source: ImageSource.gallery);
+    final XFile? selected = await _imgPicker.pickImage(source: ImageSource.gallery);
 
     if (selected != null) {
       return selected.path;
@@ -86,8 +83,7 @@ class ImageHelper {
   }
 
   Future<String?> takePictureFromCamera() async {
-    final XFile? selected =
-        await _imgPicker.pickImage(source: ImageSource.camera);
+    final XFile? selected = await _imgPicker.pickImage(source: ImageSource.camera);
 
     if (selected != null) {
       return selected.path;
@@ -96,8 +92,8 @@ class ImageHelper {
   }
 
   Future<String?> cropImage(String path) async {
-    CroppedFile? cropped = await ImageCropper()
-        .cropImage(sourcePath: path, cropStyle: CropStyle.circle);
+    CroppedFile? cropped =
+        await ImageCropper().cropImage(sourcePath: path, cropStyle: CropStyle.circle);
 
     if (cropped != null) {
       return cropped.path;
@@ -129,8 +125,7 @@ class FormatHelper {
       return null;
     }
     timeago.setLocaleMessages("vi", timeago.ViMessages());
-    return timeago.format(
-        time.add(DateTime.parse(time.toString()).timeZoneOffset),
+    return timeago.format(time.add(DateTime.parse(time.toString()).timeZoneOffset),
         locale: Get.locale?.languageCode ?? "en");
   }
 }

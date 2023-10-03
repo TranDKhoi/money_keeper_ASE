@@ -6,8 +6,7 @@ part of 'transactions_by_time.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-TransactionsByTime _$TransactionsByTimeFromJson(Map<String, dynamic> json) =>
-    TransactionsByTime(
+TransactionsByTime _$TransactionsByTimeFromJson(Map<String, dynamic> json) => TransactionsByTime(
       totalIncome: json['totalIncome'] as int?,
       totalExpense: json['totalExpense'] as int?,
       details: (json['details'] as List<dynamic>?)
@@ -15,8 +14,7 @@ TransactionsByTime _$TransactionsByTimeFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$TransactionsByTimeToJson(TransactionsByTime instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TransactionsByTimeToJson(TransactionsByTime instance) => <String, dynamic>{
       'totalIncome': instance.totalIncome,
       'totalExpense': instance.totalExpense,
       'details': instance.details?.map((e) => e.toJson()).toList(),

@@ -1,6 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import 'user.dart';
 import 'wallet.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part "wallet_member.g.dart";
 
@@ -14,16 +15,10 @@ class WalletMember {
   String? role;
   DateTime? joinAt;
 
-  WalletMember({
-    this.userId,
-    this.user,
-    this.walletId,
-    this.wallet,
-    this.status,
-    this.role,
-    this.joinAt
-});
+  WalletMember(
+      {this.userId, this.user, this.walletId, this.wallet, this.status, this.role, this.joinAt});
 
   factory WalletMember.fromJson(Map<String, dynamic> json) => _$WalletMemberFromJson(json);
+
   Map<String, dynamic> toJson() => _$WalletMemberToJson(this);
 }

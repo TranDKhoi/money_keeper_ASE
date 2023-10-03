@@ -6,6 +6,7 @@ part 'budget_detail_statistic.g.dart';
 class BudgetDetailStatistic {
   DateTime? date;
   int? expenseAmount;
+
   BudgetDetailStatistic({
     this.date,
     this.expenseAmount,

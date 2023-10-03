@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class MoneyField extends StatelessWidget {
-  const MoneyField({Key? key, required this.controller,this.hintText})
-      : super(key: key);
+  const MoneyField({Key? key, required this.controller, this.hintText}) : super(key: key);
 
   final TextEditingController controller;
   final String? hintText;

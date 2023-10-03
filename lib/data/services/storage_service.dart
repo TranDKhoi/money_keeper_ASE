@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:money_keeper/app/controllers/account/account_controller.dart';
+import 'package:money_keeper/app/features/account/controller/account_controller.dart';
 
 class StorageService {
   static final ins = StorageService._();
@@ -16,9 +16,7 @@ class StorageService {
     final ac = Get.find<AccountController>();
 
     try {
-      Reference ref = _store
-          .ref()
-          .child("transaction/${ac.currentUser.value?.token}/image.png");
+      Reference ref = _store.ref().child("transaction/${ac.currentUser.value?.token}/image.png");
       final UploadTask uploadTask = ref.putFile(file);
       final TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
       return await taskSnapshot.ref.getDownloadURL();

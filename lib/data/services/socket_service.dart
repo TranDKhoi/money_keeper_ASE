@@ -1,4 +1,4 @@
-import 'package:logging/src/logger.dart';
+import 'package:logging/logging.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
 import '../../app/core/utils/get_storage_service.dart';
@@ -22,8 +22,7 @@ class SocketService {
     _hubConnection = HubConnectionBuilder()
         .withUrl(_notiUrl,
             options: HttpConnectionOptions(
-                accessTokenFactory: _getAccessToken,
-                logger: Logger("SignalR - transport")))
+                accessTokenFactory: _getAccessToken, logger: Logger("SignalR - transport")))
         .configureLogging(Logger("SignalR - hub"))
         .build();
   }
@@ -32,25 +31,18 @@ class SocketService {
     try {
       _timeTryToConnection++;
       if (_timeTryToConnection >= 100) {
-        print("Socket try to connect more than 100 times. Disconnected");
         return;
       }
       await _hubConnection.start();
-      print("SignalR connection success: ${_hubConnection.state}");
     } catch (e) {
-      print("signalr connection error: $e");
       //if error then we try to connect again
       await startHubConnection();
     }
   }
 
-  void disconnectHubConnection() {
-  }
+  void disconnectHubConnection() {}
 
   void _onCloseHandler(Exception? error) {
-    print("SignalRService error: $error");
-    print("Connection closed");
-    print("Restarting");
     startHubConnection();
   }
 
@@ -59,8 +51,7 @@ class SocketService {
     return token!.substring(7);
   }
 
-  void onListenMethod(
-      {required String methodName, required Function(dynamic param) callBack}) {
+  void onListenMethod({required String methodName, required Function(dynamic param) callBack}) {
     _hubConnection.on(methodName, callBack);
   }
 
@@ -70,8 +61,6 @@ class SocketService {
         methodName,
         args: [args],
       );
-    } catch (e) {
-      print("Socket invoke method error: $e");
-    }
+    } catch (e) {}
   }
 }

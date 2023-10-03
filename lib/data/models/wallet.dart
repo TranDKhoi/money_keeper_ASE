@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:money_keeper/data/models/user.dart';
 import 'package:money_keeper/data/models/wallet_member.dart';
 
 part "wallet.g.dart";

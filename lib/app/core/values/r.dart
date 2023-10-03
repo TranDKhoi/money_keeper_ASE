@@ -25,8 +25,7 @@ class R {
   static const ManageyourfinanceseffectivelywithMoneyKeeper =
       "Manage your finances effectively with MoneyKeeper";
   static const Cutunnecessaryexpenses = "Cut unnecessary expenses";
-  static const Increasesavingssteadilyeverymonth =
-      "Increase savings steadily every month";
+  static const Increasesavingssteadilyeverymonth = "Increase savings steadily every month";
   static const Manageitallinoneplace = "Manage it all in one place";
   static const SIGNUPFORFREE = "SIGN UP FOR FREE";
   static const Home = "Home";
@@ -77,8 +76,7 @@ class R {
   static const Note = "Note";
   static const Edittransaction = "Edit transaction";
   static const Viewreportofthisperiod = "View report of this period";
-  static const Pleaseenteralltheinformation =
-      "Please enter all the information";
+  static const Pleaseenteralltheinformation = "Please enter all the information";
   static const Incorectcode = "Incorrect code";
   static const Incorectpassword = "Incorrect password";
   static const Vietnamese = "Vietnamese";
@@ -87,8 +85,7 @@ class R {
   static const Categoryname = "Category name";
   static const Planning = "Planning";
   static const Budget = "Budget";
-  static const Afinancial =
-      "A financial plan that helps you balance your income and expenses";
+  static const Afinancial = "A financial plan that helps you balance your income and expenses";
   static const Event = "Event";
   static const Createaneventto =
       "Create an event to track a real event; for example a weekend trip";
@@ -129,8 +126,7 @@ class R {
   static const NecessaryExpense = "NecessaryExpense";
   static const Entertainment = "Entertainment";
   static const InvestingOrDebt = "InvestingOrDebt ";
-  static const Transactioncreatedsuccessfully =
-      "Transactioncreatedsuccessfully ";
+  static const Transactioncreatedsuccessfully = "Transactioncreatedsuccessfully ";
   static const Walleterror = "Walleterror";
   static const Today = "Today";
   static const Monday = "Monday";
@@ -149,8 +145,7 @@ class R {
   static const newBudget = "New budget";
   static const noneBudget = "No budget currently";
   static const pressPlusBudget = "Press the + button to add budget";
-  static const noneTransaction =
-      "There are currently no transactions in this budget";
+  static const noneTransaction = "There are currently no transactions in this budget";
   static const Notification = "Notification";
   static const Createbudgetsuccessfully = "Createbudgetsuccessfully";
   static const Deletethisbudgetquestion = "Delete this budget question?";
@@ -164,8 +159,7 @@ class R {
   static const Decline = "Decline";
   static const Addgroupwallet = "Add group wallet";
   static const editgroupwallet = "Edit group wallet";
-  static const Addmembers =
-      "Enter the email you want to add to the wallet group";
+  static const Addmembers = "Enter the email you want to add to the wallet group";
   static const memberGroup = "The members in your wallet group";
   static const Personal = "Personal";
   static const Group = "Group";

@@ -12,9 +12,7 @@ class AppColors {
       backgroundColor: Colors.grey[50],
     ),
     inputDecorationTheme: InputDecorationTheme(
-        fillColor: Colors.grey[50],
-        filled: true,
-        suffixIconColor: Colors.black),
+        fillColor: Colors.grey[50], filled: true, suffixIconColor: Colors.black),
     tabBarTheme: const TabBarTheme(
       labelColor: Colors.green,
       unselectedLabelColor: Colors.black,
@@ -47,9 +45,7 @@ class AppColors {
       backgroundColor: Color(0xff303030),
     ),
     inputDecorationTheme: const InputDecorationTheme(
-        fillColor: Color(0xff303030),
-        filled: true,
-        suffixIconColor: Colors.white),
+        fillColor: Color(0xff303030), filled: true, suffixIconColor: Colors.white),
     tabBarTheme: const TabBarTheme(
       labelColor: Colors.green,
       unselectedLabelColor: Colors.white,

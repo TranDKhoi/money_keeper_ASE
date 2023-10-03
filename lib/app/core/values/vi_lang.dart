@@ -5,15 +5,13 @@ const Map<String, String> viLanguagePackage = {
   R.Setting: "Cài đặt",
   R.Signout: "Đăng xuất",
   R.Darkmode: "Chế độ ban đêm",
-  R.Entertheemailaccountthatyouwanttorecovery:
-      "Nhập địa chỉ email mà bạn muốn khôi phục mật khẩu",
+  R.Entertheemailaccountthatyouwanttorecovery: "Nhập địa chỉ email mà bạn muốn khôi phục mật khẩu",
   R.SENDCODE: "GỬI MÃ",
   R.Resetpassword: "Khôi phục mật khẩu",
   R.Newpassword: "Mật khẩu mới",
   R.Confirmpassword: "Xác nhận mật khẩu",
   R.CONFIRM: "XÁC NHẬN",
-  R.A4charactercodehasbeensenttotheemail:
-      "Một mã gồm 4 ký tự đã được gửi đến email",
+  R.A4charactercodehasbeensenttotheemail: "Một mã gồm 4 ký tự đã được gửi đến email",
   R.VERIFY: "XÁC MINH",
   R.Didntreceiveanycode: "Không nhận được mã?",
   R.Signin: "Đăng nhập",
@@ -22,8 +20,7 @@ const Map<String, String> viLanguagePackage = {
   R.Forgotpassword: "Quên mật khẩu?",
   R.Signup: "Đăng ký",
   R.SIGNUP: "ĐĂNG KÝ",
-  R.ManageyourfinanceseffectivelywithMoneyKeeper:
-      "Quản lý tài chính hiệu quả với MoneyKeeper",
+  R.ManageyourfinanceseffectivelywithMoneyKeeper: "Quản lý tài chính hiệu quả với MoneyKeeper",
   R.Cutunnecessaryexpenses: "Cắt giảm những chi phí không cần thiết",
   R.Increasesavingssteadilyeverymonth: "Gia tăng tiết kiệm đều đặn hàng tháng",
   R.Manageitallinoneplace: "Quản lý tất cả ở một nơi",
@@ -85,8 +82,7 @@ const Map<String, String> viLanguagePackage = {
   R.Categoryname: "Tên danh mục",
   R.Planning: "Kế hoạch",
   R.Budget: "Ngân sách",
-  R.Afinancial:
-      "Một kế hoạch tài chính giúp bạn cân bằng khoản thu và khoản chi của mình",
+  R.Afinancial: "Một kế hoạch tài chính giúp bạn cân bằng khoản thu và khoản chi của mình",
   R.Event: "Sự kiện",
   R.Createaneventto:
       "Tạo một sự kiện để theo dõi một sự kiện có thực nào đó, ví dụ như đi du lịch cuối tuần",

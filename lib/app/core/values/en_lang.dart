@@ -5,15 +5,13 @@ const Map<String, String> enLanguagePackage = {
   R.Setting: "Setting",
   R.Signout: "Sign out",
   R.Darkmode: "Dark mode",
-  R.Entertheemailaccountthatyouwanttorecovery:
-      "Enter the email account that you want to recovery",
+  R.Entertheemailaccountthatyouwanttorecovery: "Enter the email account that you want to recovery",
   R.SENDCODE: "SEND CODE",
   R.Resetpassword: "Reset password",
   R.Newpassword: "New password",
   R.Confirmpassword: "Confirm password",
   R.CONFIRM: "CONFIRM",
-  R.A4charactercodehasbeensenttotheemail:
-      "A 4-character code has been sent to the email",
+  R.A4charactercodehasbeensenttotheemail: "A 4-character code has been sent to the email",
   R.VERIFY: "VERIFY",
   R.Didntreceiveanycode: "Didn't receive any code?",
   R.Signin: "Sign in",
@@ -85,11 +83,9 @@ const Map<String, String> enLanguagePackage = {
   R.Categoryname: "Category name",
   R.Planning: "Planning",
   R.Budget: "Budget",
-  R.Afinancial:
-      "A financial plan that helps you balance your income and expenses",
+  R.Afinancial: "A financial plan that helps you balance your income and expenses",
   R.Event: "Event",
-  R.Createaneventto:
-      "Create an event to track a real event, for example a weekend trip",
+  R.Createaneventto: "Create an event to track a real event, for example a weekend trip",
   R.Running: "Running",
   R.Finished: "Finished",
   R.Addevent: "Add event",
