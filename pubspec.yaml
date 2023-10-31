@@ -55,6 +55,6 @@ flutter:
     - assets/images/
     - assets/icons/
   fonts:
-    - family: Roboto
+    - family: Poppins
       fonts:
-        - asset: assets/fonts/RobotoRegular.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf

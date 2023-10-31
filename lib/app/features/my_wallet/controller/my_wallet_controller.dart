@@ -15,6 +15,7 @@ class MyWalletController extends GetxController {
   var categoryGroupList = <Wallet>[].obs;
   var selectedCategoryGroup = Wallet().obs;
   var selectedCategoryPic = Rxn<int>();
+  var notIncludeInTotalBalance = false.obs;
 
   void getAllCategoryGroup() {
     selectedCategoryPic.value = null;

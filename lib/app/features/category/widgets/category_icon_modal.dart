@@ -6,23 +6,28 @@ class IconModalBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
+    return Container(
+      padding: const EdgeInsets.all(24),
+      height: 400,
+      width: Get.width,
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Wrap(
+          runSpacing: 50,
+          spacing: (Get.width - 48 - 180) / 4,
           children: List.generate(
             33,
-            (index) => Container(
-              margin: const EdgeInsets.all(15),
-              child: GestureDetector(
-                onTap: () {
-                  Get.back(result: index);
-                },
-                child: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.transparent,
-                  child: Image.asset('assets/icons/$index.png'),
+            (index) => GestureDetector(
+              onTap: () {
+                Get.back(result: index);
+              },
+              child: CircleAvatar(
+                radius: 25,
+                backgroundColor: Colors.transparent,
+                child: Image.asset(
+                  'assets/icons/$index.png',
+                  width: 52,
+                  height: 52,
                 ),
               ),
             ),

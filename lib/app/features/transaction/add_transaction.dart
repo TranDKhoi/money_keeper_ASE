@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:money_keeper/app/common/widget/money_field.dart';
+import 'package:money_keeper/app/core/values/color.dart';
+import 'package:money_keeper/app/core/values/style.dart';
 import 'package:money_keeper/app/features/planning/event/event_screen.dart';
 import 'package:money_keeper/app/features/transaction/controller/add_transaction_controller.dart';
 import 'package:money_keeper/app/routes/routes.dart';
@@ -38,43 +40,50 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(R.Newtransaction.tr),
+        title: Text(
+          R.Newtransaction.tr,
+          style: AppStyles.text24Bold,
+        ),
         actions: [
           TextButton(
-            onPressed: () {
-              _controller.createNewTransaction();
-            },
+            onPressed: () => _controller.createNewTransaction(),
             child: Text(R.Save.tr),
           ),
         ],
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
+        child: Container(
+          margin: const EdgeInsets.only(top: 24),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
                     MoneyField(controller: _controller.amountController),
-                    const SizedBox(height: 10),
-                    //wallet
+                    const SizedBox(height: 20),
+
+                    ///wallet
                     Row(
                       children: [
                         Obx(
                           () {
                             if (_controller.selectedWallet.value != null) {
                               return CircleAvatar(
-                                radius: 20,
+                                radius: 25,
                                 backgroundColor: Colors.transparent,
                                 child: Image.asset(
                                     "assets/icons/${_controller.selectedWallet.value?.icon}.png"),
                               );
                             }
                             return const CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Colors.grey,
+                              radius: 25,
+                              backgroundColor: AppColors.hintColor,
                             );
                           },
                         ),
@@ -101,12 +110,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                 }
                               },
                               decoration: InputDecoration(
-                                suffixIcon: const Icon(Ionicons.chevron_down),
+                                suffixIcon: const Icon(Ionicons.caret_down),
                                 contentPadding: const EdgeInsets.only(top: 20),
                                 hintText: _controller.selectedWallet.value?.name == null
                                     ? R.Selectwallet.tr
                                     : _controller.selectedWallet.value!.name,
-                                fillColor: Colors.transparent,
                               ),
                             ),
                           ),
@@ -114,7 +122,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    //category
+
+                    ///category
                     Row(
                       children: [
                         Obx(
@@ -122,12 +131,14 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             if (_controller.selectedCategory.value != null) {
                               return CircleAvatar(
                                 backgroundColor: Colors.transparent,
+                                radius: 25,
                                 child: Image.asset(
                                     "assets/icons/${_controller.selectedCategory.value!.icon}.png"),
                               );
                             } else {
                               return const CircleAvatar(
-                                backgroundColor: Colors.grey,
+                                radius: 25,
+                                backgroundColor: AppColors.hintColor,
                               );
                             }
                           },
@@ -150,31 +161,34 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                 }
                               },
                               decoration: InputDecoration(
-                                suffixIcon: const Icon(Ionicons.chevron_down),
+                                suffixIcon: const Icon(Ionicons.caret_down),
                                 contentPadding: const EdgeInsets.only(top: 20),
                                 hintText: _controller.selectedCategory.value?.name == null
                                     ? R.Selectcategory.tr
                                     : _controller.selectedCategory.value!.name,
-                                fillColor: Colors.transparent,
                               ),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    //note
+                    const SizedBox(height: 20),
+
+                    ///note
                     Row(
                       children: [
-                        const Icon(Ionicons.list_outline),
-                        const SizedBox(width: 30),
+                        Image.asset(
+                          "assets/icons/ic_note.png",
+                          width: 48,
+                          height: 48,
+                        ),
+                        const SizedBox(width: 20),
                         Expanded(
                           child: TextField(
                             controller: _controller.noteController,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.only(top: 10),
                               hintText: R.Note.tr,
-                              fillColor: Colors.transparent,
                             ),
                           ),
                         ),
@@ -185,23 +199,20 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 20),
                           Row(
                             children: [
                               const Icon(
                                 Icons.groups,
                                 size: 35,
                               ),
-                              const SizedBox(width: 20),
+                              const SizedBox(width: 30),
                               Visibility(
                                 visible: _controller.listUserGroup.isEmpty,
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      R.WithMember.tr,
-                                      style: const TextStyle(fontSize: 16),
-                                    ),
+                                    Text(R.WithMember.tr, style: AppStyles.text14Normal),
                                     const SizedBox(width: 10),
                                   ],
                                 ),
@@ -264,11 +275,16 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    //date
+
+                    ///date
                     Row(
                       children: [
-                        const Icon(Ionicons.calendar_outline),
-                        const SizedBox(width: 30),
+                        Image.asset(
+                          "assets/icons/ic_calendar.png",
+                          width: 48,
+                          height: 48,
+                        ),
+                        const SizedBox(width: 20),
                         GestureDetector(
                           onTap: () async {
                             DateTime? selectedDate = await showDatePicker(
@@ -292,25 +308,28 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    //of event?
+
+                    ///of event?
                     Row(
                       children: [
                         Obx(
                           () {
                             if (_controller.selectedEvent.value != null) {
                               return CircleAvatar(
+                                radius: 25,
                                 backgroundColor: Colors.transparent,
                                 child: Image.asset(
                                     "assets/icons/${_controller.selectedEvent.value!.icon}.png"),
                               );
                             } else {
                               return const CircleAvatar(
-                                backgroundColor: Colors.grey,
+                                radius: 25,
+                                backgroundColor: AppColors.hintColor,
                               );
                             }
                           },
                         ),
-                        const SizedBox(width: 20),
+                        const SizedBox(width: 30),
                         Obx(
                           () => Expanded(
                             child: TextField(
@@ -326,12 +345,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                 }
                               },
                               decoration: InputDecoration(
-                                suffixIcon: const Icon(Ionicons.chevron_down),
+                                suffixIcon: const Icon(Ionicons.caret_down),
                                 contentPadding: const EdgeInsets.only(top: 20),
                                 hintText: _controller.selectedEvent.value?.name == null
                                     ? R.Oftheevent.tr
                                     : _controller.selectedEvent.value!.name,
-                                fillColor: Colors.transparent,
                               ),
                             ),
                           ),
@@ -341,64 +359,70 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   ],
                 ),
               ),
-            ),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IntrinsicHeight(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () async {
-                          _controller.pickedImageGallery();
-                        },
-                        child: const Icon(
-                          Ionicons.image,
-                          size: 40,
-                        ),
+              const SizedBox(height: 24),
+
+              ///button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    color: Colors.white,
+                    surfaceTintColor: Colors.white,
+                    child: IconButton(
+                      onPressed: () => _controller.pickedImageGallery(),
+                      icon: const Icon(
+                        Ionicons.image,
+                        color: AppColors.primaryColor,
                       ),
-                      const VerticalDivider(),
+                    ),
+                  ),
+                  const SizedBox(width: 32),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    color: Colors.white,
+                    surfaceTintColor: Colors.white,
+                    child: IconButton(
+                      onPressed: () => _controller.pickedImageCamera(),
+                      icon: const Icon(
+                        Ionicons.camera,
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Obx(() {
+                if (_controller.pickedImage.value != null) {
+                  return Stack(
+                    children: [
+                      Image.file(
+                        File(_controller.pickedImage.value!),
+                      ),
                       GestureDetector(
                         onTap: () {
-                          _controller.pickedImageCamera();
+                          _controller.deleteImage();
                         },
-                        child: const Icon(
-                          Ionicons.camera,
-                          size: 40,
+                        child: const Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Icon(
+                            Ionicons.close,
+                            size: 30,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-            ),
-            Obx(() {
-              if (_controller.pickedImage.value != null) {
-                return Stack(
-                  children: [
-                    Image.file(
-                      File(_controller.pickedImage.value!),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _controller.deleteImage();
-                      },
-                      child: const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Icon(
-                          Ionicons.close,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              }
-              return const SizedBox.shrink();
-            }),
-          ],
+                  );
+                }
+                return const SizedBox.shrink();
+              }),
+            ],
+          ),
         ),
       ),
     );

@@ -28,64 +28,52 @@ class _BottomBarState extends State<BottomBar> {
     return Scaffold(
       body: Obx(() => _controller.listPage[_controller.currentIndex.value]),
       bottomNavigationBar: Obx(
-        () => BottomAppBar(
-          elevation: 100,
-          clipBehavior: Clip.antiAlias,
-          notchMargin: 5,
-          shape: const CircularNotchedRectangle(),
-          child: Wrap(
-            children: [
-              BottomNavigationBar(
-                currentIndex: _controller.currentIndex.value,
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
-                selectedFontSize: 25,
-                type: BottomNavigationBarType.fixed,
-                onTap: (i) => _controller.changePage(i),
-                items: [
-                  BottomNavigationBarItem(
-                    icon: const Icon(Ionicons.home),
-                    label: R.Home.tr,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: const Icon(Ionicons.swap_horizontal_outline),
-                    label: R.Transaction.tr,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: const Icon(Ionicons.stats_chart),
-                    label: R.Report.tr,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: const Icon(Ionicons.calendar_outline),
-                    label: R.Planning.tr,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: const Icon(Ionicons.person),
-                    label: R.Account.tr,
-                  ),
-                ],
-              ),
-            ],
+        () => Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+            border: Border.all(width: .5, color: Colors.grey[400]!),
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+            child: BottomNavigationBar(
+              currentIndex: _controller.currentIndex.value,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              onTap: (i) => _controller.changePage(i),
+              items: [
+                BottomNavigationBarItem(
+                  icon: const Icon(Ionicons.home),
+                  label: R.Home.tr,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Ionicons.swap_horizontal_outline),
+                  label: R.Transaction.tr,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Ionicons.stats_chart),
+                  label: R.Report.tr,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Ionicons.calendar),
+                  label: R.Planning.tr,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Ionicons.person),
+                  label: R.Account.tr,
+                ),
+              ],
+            ),
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Ionicons.add,
-              color: Colors.white,
-              size: 20,
-            ),
-            Icon(
-              Ionicons.swap_horizontal_outline,
-              color: Colors.white,
-              size: 20,
-            ),
-          ],
-        ),
+        child: const Icon(Ionicons.add, size: 30),
         onPressed: () {
           _controller.toCreateTransactionScreen();
         },

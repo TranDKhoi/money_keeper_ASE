@@ -59,9 +59,9 @@ class AccountController extends GetxController {
   void changeThemeMode(bool val) {
     isDarkMode.value = val;
     if (val) {
-      Get.changeTheme(AppColors.darkTheme);
+      Get.changeTheme(AppTheme.darkTheme);
     } else {
-      Get.changeTheme(AppColors.lightTheme);
+      Get.changeTheme(AppTheme.lightTheme);
     }
     GetStorageService.ins.setAppTheme(isDarkMode.value);
   }

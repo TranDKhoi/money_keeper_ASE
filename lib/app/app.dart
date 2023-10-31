@@ -20,8 +20,9 @@ class App extends StatelessWidget {
           ? mainAuthScreenRoute
           : bottomBarRoute,
       builder: EasyLoading.init(),
-      theme: AppColors.lightTheme,
-      darkTheme: AppColors.darkTheme,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
       locale: LocalizationService.currentLocale,
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),

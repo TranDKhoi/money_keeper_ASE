@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:money_keeper/app/core/values/color.dart';
+import 'package:money_keeper/app/core/values/style.dart';
 import 'package:money_keeper/app/features/bottom_bar/controller/bottombar_controller.dart';
 import 'package:money_keeper/app/features/home/controller/home_controller.dart';
 import 'package:money_keeper/app/features/home/widgets/home_chart_bar.dart';
@@ -20,11 +22,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _controller = Get.put(HomeController())
-    ..getSummaryData()
-    ..getRecentTransaction();
+  final _controller = Get.put(HomeController());
   final BottomBarController _bottomController = Get.find();
   final _walletController = Get.find<MyWalletController>();
+
+  @override
+  void initState() {
+    _controller.getSummaryData();
+    _controller.getRecentTransaction();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +44,11 @@ class _HomeScreenState extends State<HomeScreen> {
               return _controller.getRecentTransaction();
             },
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(24),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  //total balance
+                  ///total balance
                   Row(
                     children: [
                       Column(
@@ -49,112 +57,96 @@ class _HomeScreenState extends State<HomeScreen> {
                           Obx(
                             () => Text(
                               _walletController.calculateTotalBalance(),
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 35,
-                              ),
+                              style: AppStyles.text28Bold,
                             ),
                           ),
-                          Text(R.Totalbalance.tr),
+                          Text(R.Totalbalance.tr, style: AppStyles.text14Normal),
                         ],
                       ),
                       const Spacer(),
                       GestureDetector(
                         onTap: () => Get.to(() => NotifyScreen()),
-                        child: const Icon(Ionicons.notifications),
-                      )
+                        child: Image.asset(
+                          "assets/icons/ic_notify.png",
+                          width: 36,
+                          height: 36,
+                        ),
+                      ),
                     ],
                   ),
-                  // my wallets
-                  const SizedBox(height: 20),
-                  Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          Row(
+
+                  /// my wallets
+                  const SizedBox(height: 12),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 R.Mywallet.tr,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: AppStyles.text14Normal,
                               ),
-                              const Spacer(),
-                              GestureDetector(
-                                onTap: () {
-                                  _controller.toAllWalletScreen();
-                                },
-                                child: Text(
-                                  R.Seemore.tr,
-                                  style: const TextStyle(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          const Divider(),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              const Icon(Ionicons.earth),
-                              const SizedBox(width: 10),
-                              Text(
-                                R.All.tr,
-                                style: const TextStyle(fontSize: 25),
-                              ),
-                              const Spacer(),
                               Obx(
                                 () => Text(
                                   _walletController.calculateTotalBalance(),
-                                  style: const TextStyle(fontSize: 20),
+                                  style: AppStyles.text28Bold.copyWith(color: Colors.white),
                                 ),
+                              ),
+                              TextButton(
+                                onPressed: () => _controller.toAllWalletScreen(),
+                                child: Text(R.Seemore.tr),
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  //report
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      const SizedBox(width: 10),
-                      Text(
-                        R.Report.tr,
-                      ),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          _bottomController.changePage(2);
-                        },
-                        child: Text(
-                          R.Detail.tr,
-                          style: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
+                        ),
+                        Positioned(
+                          top: -30,
+                          right: -15,
+                          child: Image.asset(
+                            "assets/images/img_cash.png",
+                            width: Get.width / 2,
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+
+                  ///report
+                  const SizedBox(height: 22),
+                  Row(
+                    children: [
+                      Text(
+                        R.Report.tr,
+                        style: AppStyles.text14Normal,
                       ),
-                      const SizedBox(width: 10),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () => _bottomController.changePage(2),
+                        child: Text(R.Detail.tr),
+                      ),
                     ],
                   ),
-                  //week-month
-                  Card(
-                    shape: RoundedRectangleBorder(
+
+                  ///week-month
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          ///switch button
                           Card(
                             color: Theme.of(context).scaffoldBackgroundColor,
                             elevation: 0,
@@ -168,17 +160,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Card(
                                         elevation: 0,
                                         color: _controller.selectedReport.value == 0
-                                            ? Colors.grey[100]
+                                            ? AppColors.primaryColorVariant
                                             : Theme.of(context).scaffoldBackgroundColor,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(4.0),
                                           child: Text(
                                             R.Week.tr,
                                             textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.grey,
-                                            ),
+                                            style: AppStyles.text16Normal,
                                           ),
                                         ),
                                       ),
@@ -193,14 +182,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         elevation: 0,
                                         color: _controller.selectedReport.value == 0
                                             ? Theme.of(context).scaffoldBackgroundColor
-                                            : Colors.grey[100],
+                                            : AppColors.primaryColorVariant,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(4.0),
                                           child: Text(
                                             R.Month.tr,
                                             textAlign: TextAlign.center,
-                                            style:
-                                                const TextStyle(fontSize: 20, color: Colors.grey),
+                                            style: AppStyles.text16Normal,
                                           ),
                                         ),
                                       ),
@@ -210,47 +198,53 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          //total spent
-                          const SizedBox(height: 20),
-                          Row(
+
+                          ///total spent
+                          const SizedBox(height: 16),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
                                 children: [
                                   Obx(
                                     () => Text(
                                       FormatHelper()
                                           .moneyFormat(_controller.barChartData[1].toDouble()),
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 30,
-                                      ),
+                                      style: AppStyles.text28Bold,
                                     ),
                                   ),
-                                  Obx(
-                                    () => Text(
-                                      _controller.selectedReport.value == 0
-                                          ? R.Totalexpenseofthisweek.tr
-                                          : R.Totalexpenseofthismonth.tr,
-                                    ),
+                                  const Spacer(),
+                                  InkWell(
+                                    onTap: () async {
+                                      EasyLoading.show();
+                                      await _controller.getSummaryData();
+                                      EasyLoading.dismiss();
+                                    },
+                                    child: const Icon(Ionicons.refresh_outline),
                                   ),
                                 ],
                               ),
-                              const Spacer(),
-                              InkWell(
-                                  onTap: () async {
-                                    EasyLoading.show();
-                                    await _controller.getSummaryData();
-                                    EasyLoading.dismiss();
-                                  },
-                                  child: const Icon(Ionicons.refresh_outline))
+                              Obx(
+                                () => Text(
+                                  _controller.selectedReport.value == 0
+                                      ? R.Totalexpenseofthisweek.tr
+                                      : R.Totalexpenseofthismonth.tr,
+                                  style: AppStyles.text14Normal,
+                                ),
+                              ),
                             ],
                           ),
-                          //charts
+
+                          ///charts
                           const SizedBox(height: 30),
-                          Obx(() => HomeChartBar(
-                              _controller.barChartData[0], _controller.barChartData[1])),
-                          //most spent
+                          Obx(
+                            () => HomeChartBar(
+                              _controller.barChartData[0],
+                              _controller.barChartData[1],
+                            ),
+                          ),
+
+                          ///most spent
                           const SizedBox(height: 10),
                           // Text(
                           //   R.Mostexpense.tr,
@@ -290,44 +284,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  //recent spent
-                  const SizedBox(height: 20),
+
+                  ///recent spent
+                  const SizedBox(height: 40),
                   Row(
                     children: [
-                      const SizedBox(width: 10),
                       Text(
                         R.Recently.tr,
+                        style: AppStyles.text14Normal,
                       ),
                       const Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          _bottomController.changePage(1);
-                        },
-                        child: Text(
-                          R.Detail.tr,
-                          style: const TextStyle(
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
+                      TextButton(
+                        onPressed: () => _bottomController.changePage(1),
+                        child: Text(R.Detail.tr),
+                      )
                     ],
                   ),
-                  Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Obx(
-                        () => Column(
-                          children: _controller.transactions
-                              .map((element) => HomeTransactionItem(transaction: element))
-                              .toList(),
-                        ),
-                      ),
+                  Obx(
+                    () => Column(
+                      children: _controller.transactions
+                          .map((element) => HomeTransactionItem(transaction: element))
+                          .toList(),
                     ),
                   ),
-                  const SizedBox(height: 30),
                 ],
               ),
             ),

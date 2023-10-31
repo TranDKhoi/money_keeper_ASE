@@ -44,9 +44,9 @@ void _getAppTheme() {
   ac.isDarkMode.value = isDark;
 
   if (isDark) {
-    Get.changeTheme(AppColors.darkTheme);
+    Get.changeTheme(AppTheme.darkTheme);
   } else {
-    Get.changeTheme(AppColors.lightTheme);
+    Get.changeTheme(AppTheme.lightTheme);
   }
 
   //Get language here
