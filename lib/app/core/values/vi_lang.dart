@@ -51,9 +51,9 @@ const Map<String, String> viLanguagePackage = {
   R.Notincludeintotalbalance: "Không bao gồm vào ví tổng",
   R.Createanewwalletanddonotincludeitintototalbalance:
       "Tạo ví này và không bao gồm số dư của nó vào ví tổng",
-  R.ADDNEW: "THÊM MỚI",
+  R.addNew: "Thêm mới",
   R.DELETETHISWALLETFOREVER: "XOÁ VĨNH VIỄN VÍ NÀY",
-  R.UPDATE: "CẬP NHẬT",
+  R.update: "Cập nhật",
   R.Including: "Bao gồm",
   R.Week1: 'Tuần 1',
   R.Week2: 'Tuần 2',

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:money_keeper/app/common/widget/m_switch.dart';
+import 'package:money_keeper/app/core/values/color.dart';
+import 'package:money_keeper/app/core/values/style.dart';
 import 'package:money_keeper/app/features/my_wallet/controller/my_wallet_controller.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
@@ -54,154 +57,138 @@ class _EditWalletScreenState extends State<EditWalletScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(R.Editwallet.tr),
+        title: Text(
+          R.Editwallet.tr,
+          style: AppStyles.text24Bold,
+        ),
         actions: [
-          Row(
-            children: [
-              Text(R.Groupwallet.tr),
-              Switch(
-                  value: isGroupWallet,
-                  onChanged: (val) {
-                    _controller.listMember.clear();
-                    setState(() {
-                      isGroupWallet = val;
-                    });
-                  }),
-            ],
-          ),
+          Text(R.Groupwallet.tr),
+          const SizedBox(width: 12),
+          MSwitch(
+              value: isGroupWallet,
+              onChanged: (val) {
+                _controller.listMember.clear();
+                setState(() {
+                  isGroupWallet = val;
+                });
+              }),
+          const SizedBox(width: 24),
         ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () async {
-                          var res = await showModalBottomSheet<int>(
-                              context: context,
-                              builder: (BuildContext context) => const IconModalBottomSheet());
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                        var res = await showModalBottomSheet<int>(
+                            context: context,
+                            builder: (BuildContext context) => const IconModalBottomSheet());
 
-                          if (res != null) {
-                            _controller.selectedCategoryPic.value = res;
-                          }
-                        },
-                        child: Obx(() {
-                          if (_controller.selectedCategoryPic.value != null) {
-                            return CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Colors.transparent,
-                              child: Image.asset(
-                                  "assets/icons/${_controller.selectedCategoryPic.value}.png"),
-                            );
-                          }
-                          if (selectedWallet.icon != null) {
-                            return CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Colors.transparent,
-                              child: Image.asset("assets/icons/${selectedWallet.icon}.png"),
-                            );
-                          }
-                          return const CircleAvatar(
-                            radius: 20,
-                            backgroundColor: Colors.grey,
+                        if (res != null) {
+                          _controller.selectedCategoryPic.value = res;
+                        }
+                      },
+                      child: Obx(() {
+                        if (_controller.selectedCategoryPic.value != null) {
+                          return CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Colors.transparent,
+                            child: Image.asset(
+                                "assets/icons/${_controller.selectedCategoryPic.value}.png"),
                           );
-                        }),
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: TextFormField(
-                          controller: textWalletName,
-                          onChanged: (s) {},
-                          style: const TextStyle(
-                            fontSize: 20,
-                          ),
-                          decoration: InputDecoration(
-                            fillColor: Colors.transparent,
-                            filled: true,
-                            hintText: R.Walletname.tr,
-                          ),
+                        }
+                        if (selectedWallet.icon != null) {
+                          return CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Colors.transparent,
+                            child: Image.asset("assets/icons/${selectedWallet.icon}.png"),
+                          );
+                        }
+                        return const CircleAvatar(
+                          radius: 25,
+                          backgroundColor: Colors.grey,
+                        );
+                      }),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: TextFormField(
+                        controller: textWalletName,
+                        onChanged: (s) {},
+                        decoration: InputDecoration(
+                          hintText: R.Walletname.tr,
+                          suffixIcon: const Icon(Ionicons.create_outline),
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      const Icon(
-                        Ionicons.trending_up,
-                        size: 30,
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: TextFormField(
-                          initialValue: _formatter.format(textWalletBalance.text),
-                          keyboardType: TextInputType.number,
-                          onChanged: (val) {
-                            textWalletBalance.text = val.trim().replaceAll(RegExp(r"\D"), "");
-                          },
-                          style: const TextStyle(
-                            fontSize: 30,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Image.asset(
+                      "assets/icons/ic_wallet.png",
+                      width: 48,
+                      height: 48,
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: _formatter.format(textWalletBalance.text),
+                        keyboardType: TextInputType.number,
+                        onChanged: (val) {
+                          textWalletBalance.text = val.trim().replaceAll(RegExp(r"\D"), "");
+                        },
+                        style: AppStyles.text14Normal.copyWith(
+                          color: AppColors.primaryColor,
+                        ),
+                        inputFormatters: [_formatter],
+                        decoration: const InputDecoration(
+                          hintText: "VND",
+                          hintStyle: TextStyle(
                             color: Colors.green,
                           ),
-                          inputFormatters: [_formatter],
-                          decoration: const InputDecoration(
-                            hintText: "VND",
-                            hintStyle: TextStyle(
-                              color: Colors.green,
-                            ),
-                            fillColor: Colors.transparent,
-                          ),
+                          fillColor: Colors.transparent,
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Visibility(
-                    visible: isGroupWallet,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.groups,
-                              size: 30,
-                            ),
-                            const SizedBox(width: 20),
-                            Text(
-                              R.memberGroup.tr,
-                              style: const TextStyle(fontSize: 13),
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        TextFieldTags(
-                          textfieldTagsController: _tagController,
-                          initialTags: listMembers,
-                          inputfieldBuilder: (context, tec, fn, error, onChanged, onSubmitted) {
-                            return ((context, sc, tags, onTagDelete) {
-                              return TextField(
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Visibility(
+                  visible: isGroupWallet,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextFieldTags(
+                        textfieldTagsController: _tagController,
+                        initialTags: listMembers,
+                        inputfieldBuilder: (context, tec, fn, error, onChanged, onSubmitted) {
+                          return ((context, sc, tags, onTagDelete) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: context.theme.scaffoldBackgroundColor,
+                              ),
+                              child: TextField(
                                 controller: tec,
                                 focusNode: fn,
                                 decoration: InputDecoration(
                                   isDense: true,
-                                  border: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  hintText: _tagController.hasTags ? '' : "Enter email...",
+                                  focusedBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  hintText: _tagController.hasTags ? '' : R.Email.tr,
                                   errorText: error,
                                   prefixIcon: tags.isNotEmpty
                                       ? SingleChildScrollView(
@@ -214,7 +201,7 @@ class _EditWalletScreenState extends State<EditWalletScreen> {
                                                   borderRadius: BorderRadius.all(
                                                     Radius.circular(20.0),
                                                   ),
-                                                  color: Colors.green,
+                                                  color: AppColors.primaryColor,
                                                 ),
                                                 margin: const EdgeInsets.symmetric(horizontal: 5),
                                                 padding: const EdgeInsets.symmetric(
@@ -270,23 +257,51 @@ class _EditWalletScreenState extends State<EditWalletScreen> {
                                     onSubmitted?.call(result);
                                   });
                                 },
-                              );
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                              ),
+                            );
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        R.memberGroup.tr,
+                        textAlign: TextAlign.start,
+                        style: AppStyles.text12Normal,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
-          SwitchListTile(
-            value: false,
-            onChanged: (val) {},
-            isThreeLine: true,
-            title: Text(R.Notincludeintotalbalance.tr),
-            subtitle: Text(R.Createanewwalletanddonotincludeitintototalbalance.tr),
+
+          /// include in total
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      R.Notincludeintotalbalance.tr,
+                      style: AppStyles.text16Normal.copyWith(
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Spacer(),
+                    MSwitch(
+                      value: _controller.notIncludeInTotalBalance.value,
+                      onChanged: (v) => _controller.notIncludeInTotalBalance.value = v,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  R.Createanewwalletanddonotincludeitintototalbalance.tr,
+                  style: AppStyles.text14Normal,
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 30),
           GestureDetector(
@@ -390,7 +405,7 @@ class _EditWalletScreenState extends State<EditWalletScreen> {
                   _controller.updateWallet(newWallet);
                 }
               },
-              child: Text(R.UPDATE.tr),
+              child: Text(R.update.tr),
             ),
           ),
           const SizedBox(height: 30),

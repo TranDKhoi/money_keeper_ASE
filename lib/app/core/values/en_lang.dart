@@ -52,9 +52,9 @@ const Map<String, String> enLanguagePackage = {
   R.Notincludeintotalbalance: "Not include in total balance",
   R.Createanewwalletanddonotincludeitintototalbalance:
       "Create a new wallet and do not include it into total balance",
-  R.ADDNEW: "ADD NEW",
+  R.addNew: "Add new",
   R.DELETETHISWALLETFOREVER: "DELETE THIS WALLET FOREVER",
-  R.UPDATE: "UPDATE",
+  R.update: "Update",
   R.Including: "Including",
   R.Week1: 'Week 1',
   R.Week2: 'Week 2',

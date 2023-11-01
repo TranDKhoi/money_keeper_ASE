@@ -54,9 +54,9 @@ class R {
   static const Notincludeintotalbalance = "Not include in total balance";
   static const Createanewwalletanddonotincludeitintototalbalance =
       "static const Create a new wallet and do not include it into total balance";
-  static const ADDNEW = "ADD NEW";
+  static const addNew = "Add new";
   static const DELETETHISWALLETFOREVER = "DELETE THIS WALLET FOREVER";
-  static const UPDATE = "UPDATE";
+  static const update = "Update";
   static const Including = "Including";
   static const Week1 = 'Week 1';
   static const Week2 = 'Week 2';

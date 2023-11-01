@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:money_keeper/app/common/widget/m_switch.dart';
 import 'package:money_keeper/app/common/widget/money_field.dart';
+import 'package:money_keeper/app/core/values/color.dart';
 import 'package:money_keeper/app/core/values/style.dart';
 import 'package:money_keeper/data/models/wallet.dart';
 import 'package:textfield_tags/textfield_tags.dart';
@@ -115,14 +116,16 @@ class _AddWalletScreenState extends State<AddWalletScreen> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    //wallet balance
+
+                    ///wallet balance
                     Row(
                       children: [
-                        const Icon(
-                          Ionicons.trending_up,
-                          size: 30,
+                        Image.asset(
+                          "assets/icons/ic_wallet.png",
+                          width: 48,
+                          height: 48,
                         ),
-                        const SizedBox(width: 30),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: MoneyField(
                             controller: textWalletBalance,
@@ -144,6 +147,10 @@ class _AddWalletScreenState extends State<AddWalletScreen> {
                         Obx(
                           () => Expanded(
                             child: DropdownButton<Wallet>(
+                              icon: const Icon(
+                                Ionicons.caret_down,
+                                color: AppColors.hintColor,
+                              ),
                               isExpanded: true,
                               value: _controller.selectedCategoryGroup.value,
                               items: _controller.categoryGroupList.map((Wallet value) {
@@ -332,7 +339,7 @@ class _AddWalletScreenState extends State<AddWalletScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24 + 40),
               child: ElevatedButton(
                 onPressed: _createNewWallet,
-                child: Text(R.ADDNEW.tr),
+                child: Text(R.addNew.tr),
               ),
             ),
           ],
