@@ -23,7 +23,25 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(R.Mywallet.tr),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              R.Mywallet.tr,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Obx(
+              () => Text(
+                _controller.calculateTotalBalance(),
+                style: const TextStyle(
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             onPressed: () async {
@@ -34,72 +52,76 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
           )
         ],
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: SizedBox(
           height: context.screenSize.height,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Divider(thickness: 1),
-              ListTile(
-                isThreeLine: true,
-                dense: true,
-                leading: const Icon(
-                  Ionicons.earth,
-                  size: 40,
-                ),
-                title: Text(
-                  R.All.tr,
-                  style: const TextStyle(
-                    fontSize: 25,
-                  ),
-                ),
-                subtitle: Obx(
-                  () => Text(
-                    _controller.calculateTotalBalance(),
-                    style: const TextStyle(
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              ),
-              const Divider(thickness: 1),
               const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, bottom: 10),
-                  child: Text(
-                    R.Personal.tr,
-                    style: const TextStyle(
-                      fontSize: 20,
+              Padding(
+                padding: const EdgeInsets.only(left: 20, bottom: 10, right: 20),
+                child: ExpansionTile(
+                  title: ListTile(
+                    leading: CircleAvatar(
+                      radius: 24,
+                      backgroundColor: Colors.grey.withOpacity(0.1),
+                      child: Image.asset(
+                        "assets/icons/ic_user.png",
+                        width: 28,
+                        height: 28,
+                      ),
+                    ),
+                    title: Text(
+                      R.Personal.tr,
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
+                  children: [
+                    Obx(
+                      () => Column(
+                        children: _controller.listWallet
+                            .map((element) => _buildWalletItem(element))
+                            .toList(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Obx(
-                () => Column(
-                  children:
-                      _controller.listWallet.map((element) => _buildWalletItem(element)).toList(),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, bottom: 10),
-                  child: Text(
-                    R.Group.tr,
-                    style: const TextStyle(
-                      fontSize: 20,
+              Padding(
+                padding: const EdgeInsets.only(left: 20, bottom: 10, right: 20),
+                child: ExpansionTile(
+                  title: ListTile(
+                    leading: CircleAvatar(
+                      radius: 24,
+                      backgroundColor: Colors.grey.withOpacity(0.1),
+                      child: Image.asset(
+                        "assets/icons/ic_group.png",
+                        width: 28,
+                        height: 28,
+                      ),
+                    ),
+                    title: Text(
+                      R.Group.tr,
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Obx(
-                () => Column(
-                  children: _controller.listGroupWallet
-                      .map((element) => _buildWalletItem(element))
-                      .toList(),
+                  children: [
+                    Obx(
+                          () => Column(
+                            children: _controller.listGroupWallet
+                                .map((element) => _buildWalletItem(element))
+                                .toList(),
+                          ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -120,28 +142,49 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
   }
 
   Widget _buildWalletItem(Wallet listWallet) {
-    return ListTile(
-      onTap: () {
-        if (isFromTransactionScreen) {
-          Get.back(result: listWallet);
-        } else {
-          _controller.toEditWallet(listWallet);
-        }
-      },
-      isThreeLine: true,
-      dense: true,
-      leading: CircleAvatar(
-        radius: 20,
-        backgroundColor: Colors.transparent,
-        child: Image.asset("assets/icons/${listWallet.icon}.png"),
-      ),
-      title: Text(
-        listWallet.name!,
-        style: const TextStyle(fontSize: 25),
-      ),
-      subtitle: Text(
-        FormatHelper().moneyFormat(listWallet.balance?.toDouble()),
-        style: const TextStyle(fontSize: 15),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Material(
+        elevation: 1,
+        shape: RoundedRectangleBorder(
+            side: BorderSide.none,
+            borderRadius: BorderRadius.circular(18)
+        ),
+        child: ListTile(
+          onTap: () {
+            if (isFromTransactionScreen) {
+              Get.back(result: listWallet);
+            } else {
+              _controller.toEditWallet(listWallet);
+            }
+          },
+          shape: RoundedRectangleBorder(
+              side: BorderSide.none,
+              borderRadius: BorderRadius.circular(18)
+          ),
+          tileColor: const Color(0xffF7FAFC),
+          isThreeLine: true,
+          dense: true,
+          leading: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+            ),
+            padding: const EdgeInsets.all(4),
+            margin: const EdgeInsets.only(left: 10),
+            child: Image.asset(
+              "assets/icons/${listWallet.icon}.png",
+            ),
+          ),
+          title: Text(
+            listWallet.name!,
+            style: const TextStyle(fontSize: 25),
+          ),
+          subtitle: Text(
+            FormatHelper().moneyFormat(listWallet.balance?.toDouble()),
+            style: const TextStyle(fontSize: 15),
+          ),
+        ),
       ),
     );
   }
