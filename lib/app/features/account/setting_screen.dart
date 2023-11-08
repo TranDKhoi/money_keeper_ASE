@@ -19,19 +19,48 @@ class SettingScreen extends StatelessWidget {
       body: Column(
         children: [
           ListTile(
-            leading: const Icon(Ionicons.moon_outline),
-            title: Text(R.Darkmode.tr),
+            leading: CircleAvatar(
+              radius: 24,
+              backgroundColor: Colors.grey.withOpacity(0.1),
+              child: Image.asset(
+                "assets/icons/ic_darkmode.png",
+                width: 28,
+                height: 28,
+              ),
+            ),
+            title: Text(
+              R.Darkmode.tr,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             trailing: Obx(
               () => Switch(
+                activeColor: const Color(0xffFC7361),
+                inactiveThumbColor: const Color(0xff859BB5),
                 onChanged: (val) {
                   _controller.changeThemeMode(val);
                 },
                 value: _controller.isDarkMode.value,
               ),
             ),
+            shape: const Border(
+              bottom: BorderSide(color: Colors.grey, width: 0.2),
+              top: BorderSide(color: Colors.grey, width: 0.2),
+            ),
+            contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           ),
           ListTile(
-            leading: const Icon(Ionicons.earth_outline),
+            leading: CircleAvatar(
+              radius: 24,
+              backgroundColor: Colors.grey.withOpacity(0.1),
+              child: Image.asset(
+                "assets/icons/ic_language.png",
+                width: 28,
+                height: 28,
+              ),
+            ),
             title: Text(R.Vietnamese.tr),
             trailing: Obx(
               () => Switch(
@@ -39,8 +68,14 @@ class SettingScreen extends StatelessWidget {
                   _controller.changeLanguage(val);
                 },
                 value: _controller.isVietnamese.value,
+                activeColor: const Color(0xffFC7361),
+                inactiveThumbColor: const Color(0xff859BB5),
               ),
             ),
+            shape: const Border(
+              bottom: BorderSide(color: Colors.grey, width: 0.2),
+            ),
+            contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           ),
         ],
       ),
