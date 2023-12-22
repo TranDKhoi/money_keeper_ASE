@@ -19,11 +19,18 @@ class _PlanningScreenState extends State<PlanningScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(R.Planning.tr),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 24),
+          child: Text(
+            R.Planning.tr,
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+        ),
         automaticallyImplyLeading: false,
       ),
       //////////////////
       body: ListView(
+        padding: const EdgeInsets.all(20),
         children: [
           ListTile(
             onTap: () {
@@ -34,39 +41,64 @@ class _PlanningScreenState extends State<PlanningScreen> {
               }
               Get.toNamed(budgetScreenRoute);
             },
-            contentPadding: const EdgeInsets.all(20),
-            leading: const Icon(
-              Ionicons.pie_chart,
-              color: Colors.green,
-              size: 30,
+            shape: const Border(
+              top: BorderSide(color: Colors.black, width: 0.3),
+              bottom: BorderSide(color: Colors.black, width: 0.3),
             ),
-            trailing: const Icon(Ionicons.chevron_forward_outline),
+            contentPadding: const EdgeInsets.symmetric(vertical: 10),
+            leading: CircleAvatar(
+              radius: 32,
+              backgroundColor: Colors.grey.withOpacity(0.1),
+              child: Image.asset(
+                "assets/icons/ic_budget.png",
+                width: 28,
+                height: 28,
+              ),
+            ),
+            trailing: Icon(
+              Ionicons.caret_forward_outline,
+              color: Colors.blueGrey.withOpacity(0.7),
+            ),
             title: Text(
               R.Budget.tr,
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
+                fontWeight: FontWeight.w600,
               ),
             ),
-            subtitle: Text(R.Afinancial.tr),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Text(R.Afinancial.tr),
+            ),
           ),
           ListTile(
             onTap: () => Get.toNamed(eventScreenRoute),
-            contentPadding: const EdgeInsets.all(20),
-            leading: const Icon(
-              Ionicons.calendar_sharp,
-              color: Colors.green,
-              size: 30,
+            contentPadding: const EdgeInsets.symmetric(vertical: 10),
+            leading: CircleAvatar(
+              radius: 32,
+              backgroundColor: Colors.grey.withOpacity(0.1),
+              child: Image.asset(
+                "assets/icons/ic_event.png",
+                width: 28,
+                height: 28,
+              ),
             ),
-            trailing: const Icon(Ionicons.chevron_forward_outline),
+            shape: const Border(
+              bottom: BorderSide(color: Colors.black, width: 0.3),
+            ),
+            trailing: Icon(
+              Ionicons.caret_forward_outline,
+              color: Colors.blueGrey.withOpacity(0.7),
+            ),
             title: Text(
               R.Event.tr,
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
+                fontWeight: FontWeight.w600,
               ),
             ),
-            subtitle: Text(R.Createaneventto.tr),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Text(R.Createaneventto.tr),
+            ),
           ),
         ],
       ),
