@@ -6,4 +6,6 @@ class AppColors {
   static const primaryColorVariant = Color(0xffC1FFE4);
   static const darkGray = Color(0xff616161);
   static const hintColor = Color(0xff859BB5);
+  static const textFieldBg = Color(0xFFF5F4FB);
+  static const black = Color(0xFF040303);
 }

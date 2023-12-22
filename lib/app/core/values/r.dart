@@ -23,11 +23,11 @@ class R {
   static const Signup = "Sign up";
   static const SIGNUP = "SIGNUP";
   static const ManageyourfinanceseffectivelywithMoneyKeeper =
-      "Manage your finances effectively with MoneyKeeper";
-  static const Cutunnecessaryexpenses = "Cut unnecessary expenses";
-  static const Increasesavingssteadilyeverymonth = "Increase savings steadily every month";
-  static const Manageitallinoneplace = "Manage it all in one place";
-  static const SIGNUPFORFREE = "SIGN UP FOR FREE";
+      "Effective financial management";
+  static const Cutunnecessaryexpenses = "Reduce unnecessary expenses";
+  static const Increasesavingssteadilyeverymonth = "Save money every month";
+  static const Manageitallinoneplace = "All are managed in one place";
+  static const SIGNUPFORFREE = "Sign up free";
   static const Home = "Home";
   static const Transaction = "Transaction";
   static const Report = "Report";

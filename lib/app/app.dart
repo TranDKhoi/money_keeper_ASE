@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
       initialRoute: Get.find<AccountController>().currentUser.value?.token == null
-          ? mainAuthScreenRoute
+              ? mainAuthScreenRoute
           : bottomBarRoute,
       builder: EasyLoading.init(),
       theme: AppTheme.lightTheme,
