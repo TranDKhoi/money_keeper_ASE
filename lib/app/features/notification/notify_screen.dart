@@ -28,6 +28,7 @@ class NotifyScreen extends StatelessWidget {
       ),
       body: Obx(
         () => ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           physics: const BouncingScrollPhysics(),
           itemBuilder: (ctx, i) => _buildNotiItem(_controller.listNotify[i]),
           separatorBuilder: (_, __) => const Divider(),
@@ -97,22 +98,6 @@ class NotifyScreen extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          Row(
-            children: [
-              CircleAvatar(
-                radius: 18,
-                backgroundImage: AssetImage("assets/icons/${notify.wallet?.icon}.png"),
-                backgroundColor: Colors.transparent,
-              ),
-              const SizedBox(width: 10),
-              Text(
-                notify.wallet?.name ?? "",
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ],
-          ),
           const Spacer(),
           Text(FormatHelper().getTimeAgo(notify.createdAt) ?? ""),
         ],

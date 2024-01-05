@@ -20,7 +20,6 @@ class BottomBarController extends GetxController {
   var currentIndex = 0.obs;
 
   void changePage(int val) {
-    if (val == 2) return;
     currentIndex.value = val;
   }
 

@@ -20,6 +20,7 @@ class ManageInvitationScreen extends StatelessWidget {
       ),
       body: Obx(
         () => ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           physics: const BouncingScrollPhysics(),
           itemBuilder: (ctx, i) => _buildInviteItem(_controller.listInvite[i]),
           separatorBuilder: (_, __) => const Divider(),

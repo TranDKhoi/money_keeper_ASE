@@ -97,20 +97,29 @@ class _BudgetInfoScreenState extends State<BudgetInfoScreen> {
                 //recommended spending area
                 Row(
                   children: [
-                    Column(
-                      children: [
-                        Text(R.recommendeddaily.tr),
-                        Text(FormatHelper()
-                            .moneyFormat(budgetDetailSummary.recommendedDailyExpense!)),
-                      ],
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            R.recommendeddaily.tr,
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(FormatHelper()
+                              .moneyFormat(budgetDetailSummary.recommendedDailyExpense!)),
+                        ],
+                      ),
                     ),
-                    const Spacer(),
-                    Column(
-                      children: [
-                        Text(R.projectedspending.tr),
-                        Text(FormatHelper().moneyFormat(
-                            double.parse(budgetDetailSummary.expectedExpense!.toStringAsFixed(2)))),
-                      ],
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            R.projectedspending.tr,
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(FormatHelper().moneyFormat(double.parse(
+                              budgetDetailSummary.expectedExpense!.toStringAsFixed(2)))),
+                        ],
+                      ),
                     ),
                   ],
                 ),

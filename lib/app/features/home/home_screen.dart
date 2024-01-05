@@ -12,6 +12,7 @@ import 'package:money_keeper/app/features/my_wallet/controller/my_wallet_control
 import '../../common/widget/home_transaction_item.dart';
 import '../../core/utils/utils.dart';
 import '../../core/values/r.dart';
+import '../notification/notify_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -63,14 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       const Spacer(),
-                      // GestureDetector(
-                      //   onTap: () => Get.to(() => NotifyScreen()),
-                      //   child: Image.asset(
-                      //     "assets/icons/ic_notify.png",
-                      //     width: 36,
-                      //     height: 36,
-                      //   ),
-                      // ),
+                      GestureDetector(
+                        onTap: () => Get.to(() => NotifyScreen()),
+                        child: Image.asset(
+                          "assets/icons/ic_notify.png",
+                          width: 36,
+                          height: 36,
+                        ),
+                      ),
                     ],
                   ),
 
